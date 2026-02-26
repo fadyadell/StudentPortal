@@ -1,0 +1,21 @@
+@model StudentPortal.Models.Student
+
+<h2>Add New Student</h2>
+
+<form method="post" asp-action="Create">
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Age:</label>
+        <input asp-for="Age" type="number"/>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" type="email"/>
+    </div>
+    <button type="submit">Add Student</button>
+</form>
+
+<a href="/Student/Index">Back to List</a>

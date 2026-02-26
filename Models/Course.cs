@@ -1,0 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace StudentPortal.Models
+{
+    public class Course
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        public int CreditHours { get; set; }
+    }
+}
