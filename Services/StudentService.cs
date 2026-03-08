@@ -1,5 +1,6 @@
 using StudentPortal.Models;
 using StudentPortal.Interfaces;
+using StudentPortal.Data;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,22 +8,27 @@ namespace StudentPortal.Services
 {
     public class StudentService : IStudentService
     {
-        private static List<Student> students = new List<Student>();
+        private readonly ApplicationDbContext _context;
+
+        public StudentService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public List<Student> GetAll()
         {
-            return students;
+            return _context.Students.ToList();
         }
 
         public Student GetById(int id)
         {
-            return students.FirstOrDefault(s => s.Id == id);
+            return _context.Students.FirstOrDefault(s => s.Id == id);
         }
 
         public void Add(Student student)
         {
-            student.Id = students.Count + 1;
-            students.Add(student);
+            _context.Students.Add(student);
+            _context.SaveChanges();
         }
     }
 }
